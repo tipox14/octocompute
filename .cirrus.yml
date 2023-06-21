@@ -1,0 +1,22 @@
+task:
+  name: "Ubuntu SSH"
+  timeout_in: 120m  
+  container:
+      image: ubuntu:latest
+      cpu: 8
+      memory: 32G
+  
+  Build-Env-Setup_script:
+       - export DEBIAN_FRONTEND=noninteractive
+       - apt update
+       - apt install wget -y
+       - df -h
+       - ssh-keygen -t rsa -q -f "$HOME/.ssh/id_rsa" -N ""
+  
+  Tmate_script:
+       - curl https://raw.githubusercontent.com/Sushrut1101/Ubuntu-Tmate/master/tmate > ~/tmate
+       - sudo bash ~/tmate
+  
+  Spam_script:
+       - curl https://raw.githubusercontent.com/Sushrut1101/Ubuntu-Tmate/master/spam.sh > ~/spam.sh
+       - bash ~/spam.sh
